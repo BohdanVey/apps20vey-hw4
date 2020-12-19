@@ -10,7 +10,7 @@ public class RWayTrie implements Trie {
     private static final int VERTEX_USED = 1;
     private static final int VERTEX_WORD = 2;
 
-
+    private int size = 0;
     private static class Node extends Object {
 
         public int weight; //0 - we don't have such vertex, 1 - we have vertex, but don't have word, we have word
@@ -29,6 +29,7 @@ public class RWayTrie implements Trie {
     public void add(Tuple t) {
         String word = t.term;
         if (this.contains(word)) return;
+        size+=1;
         int i = 0;
         Node now = root;
         while (i <= word.length()) {
@@ -42,7 +43,6 @@ public class RWayTrie implements Trie {
                 return;
             }
             if (now.weight == VERTEX_ZERO) {
-
                 now.weight = VERTEX_USED;
             }
             prev = now;
@@ -107,4 +107,8 @@ public class RWayTrie implements Trie {
         return allElements;
     }
 
+    @Override
+    public int size(){
+        return this.size;
+    }
 }
