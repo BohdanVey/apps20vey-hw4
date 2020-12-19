@@ -9,14 +9,15 @@ public class RWayTrie implements Trie {
     private static final int VERTEX_ZERO = 0;
     private static final int VERTEX_USED = 1;
     private static final int VERTEX_WORD = 2;
-
+    public static final int ELEMENTS_IN_VERTEX = 256;
     private int size = 0;
 
     private static class Node extends Object {
-
-        public int weight; //0 - we don't have such vertex, 1 - we have vertex, but don't have word, we have word
+        //0 - we don't have such vertex, 1 - we have vertex, but don't have word, we have word
+        public int weight;
         public String word;
-        public final Node[] next = new Node[256]; // To be sure that we can use any char(lowercase and uppercase)
+        // To be sure that we can use any char(lowercase and uppercase)
+        public final Node[] next = new Node[ELEMENTS_IN_VERTEX];
 
         public Node() {
             this.weight = 0;
@@ -26,15 +27,17 @@ public class RWayTrie implements Trie {
 
     private Node root = new Node();
     private Node prev = root;
-    Character prev_char = 'a';
 
     @Override
     public void add(Tuple t) {
         String word = t.term;
-        if (this.contains(word)) return;
+        if (this.contains(word)) {
+            return;
+        }
         size += 1;
         int i = 0;
         Node now = root;
+        Character prev_char = ' ';
         while (i <= word.length()) {
             if (now == null) {
                 now = new Node();
@@ -61,7 +64,9 @@ public class RWayTrie implements Trie {
         Node now = root;
         while (i < word.length()) {
             now = now.next[word.charAt(i)];
-            if (now == null || now.weight == VERTEX_ZERO) return now;
+            if (now == null || now.weight == VERTEX_ZERO) {
+                return now;
+            }
             i += 1;
         }
 
@@ -101,7 +106,7 @@ public class RWayTrie implements Trie {
             if (now.weight == 2) {
                 allElements.add(now.word);
             }
-            for (int i = 0; i < 256; i++) {
+            for (int i = 0; i < ELEMENTS_IN_VERTEX; i++) {
                 if (now.next[i] != null && now.next[i].weight > 0) {
                     q.enqueue(now.next[i]);
                 }
