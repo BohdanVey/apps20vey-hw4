@@ -19,7 +19,6 @@ public class RWayTrie implements Trie {
         public String word;
 
 
-
         // To be sure that we can use any char(lowercase and uppercase)
         public final Node[] next = new Node[ELEMENTS_IN_VERTEX];
 
@@ -88,8 +87,9 @@ public class RWayTrie implements Trie {
     @Override
     public boolean delete(String word) {
         Node now = get(word);
-        if (now.weight == 2) {
+        if (now!= null && now.weight == 2) {
             now.weight = 1;
+            size--;
             return true;
         }
         return false;
