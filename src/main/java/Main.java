@@ -6,8 +6,8 @@ public class Main {
         PrefixMatches pm = new PrefixMatches(new RWayTrie());
         pm.load("abce", "abc abc abce a", "abcd", "abcde", "abcdef");
         pm.wordsWithPrefix("");
-        Iterable<String> all = pm.wordsWithPrefix("ab",2);
-        for(String word : all){
+        Iterable<String> all = pm.wordsWithPrefix("ab", 2);
+        for (String word : all) {
             System.out.println(word);
         }
     }

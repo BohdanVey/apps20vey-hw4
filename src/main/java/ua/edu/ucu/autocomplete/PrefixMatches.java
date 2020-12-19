@@ -14,9 +14,11 @@ import java.util.List;
 public class PrefixMatches {
 
     private Trie trie;
-    public PrefixMatches(){
+
+    public PrefixMatches() {
         trie = new RWayTrie();
     }
+
     public PrefixMatches(Trie trie) {
         this.trie = new RWayTrie();
 
@@ -57,12 +59,12 @@ public class PrefixMatches {
         Iterable<String> allWords = this.wordsWithPrefix(pref);
         List<String> correctWords = new ArrayList();
         String prev = "";
-        if(k<=0) return correctWords;
-        for(String word: allWords){
-            if(prev.length() != word.length()) k--;
-           if(k<0) break;
+        if (k <= 0) return correctWords;
+        for (String word : allWords) {
+            if (prev.length() != word.length()) k--;
+            if (k < 0) break;
             correctWords.add(word);
-           prev = word;
+            prev = word;
         }
         return correctWords;
     }
