@@ -67,7 +67,4 @@ public class PrefixMatches {
         return correctWords;
     }
 
-    public int size() {
-        return trie.size();
-    }
 }
