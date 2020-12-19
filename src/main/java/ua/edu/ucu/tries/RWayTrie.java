@@ -12,7 +12,7 @@ public class RWayTrie implements Trie {
     public static final int ELEMENTS_IN_VERTEX = 256;
     private int size = 0;
 
-    private static class Node extends Object {
+    public static class Node extends Object {
         //0 - we don't have such vertex, 1 - we have vertex, but don't have word, we have word
         public int weight;
         public String word;
@@ -21,6 +21,7 @@ public class RWayTrie implements Trie {
 
         public Node() {
             this.weight = 0;
+            
         }
     }
 
@@ -37,11 +38,11 @@ public class RWayTrie implements Trie {
         size += 1;
         int i = 0;
         Node now = root;
-        Character prev_char = ' ';
+        Character prevChar = ' ';
         while (i <= word.length()) {
             if (now == null) {
                 now = new Node();
-                prev.next[prev_char] = now;
+                prev.next[prevChar] = now;
             }
             if (i == word.length()) {
                 now.weight = VERTEX_WORD;
@@ -52,7 +53,7 @@ public class RWayTrie implements Trie {
                 now.weight = VERTEX_USED;
             }
             prev = now;
-            prev_char = word.charAt(i);
+            prevChar = word.charAt(i);
             now = now.next[word.charAt(i)];
 
             i += 1;
