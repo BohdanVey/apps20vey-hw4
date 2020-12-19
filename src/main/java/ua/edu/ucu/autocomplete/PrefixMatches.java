@@ -5,7 +5,6 @@ import ua.edu.ucu.tries.Trie;
 import ua.edu.ucu.tries.Tuple;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -59,10 +58,16 @@ public class PrefixMatches {
         Iterable<String> allWords = this.wordsWithPrefix(pref);
         List<String> correctWords = new ArrayList();
         String prev = "";
-        if (k <= 0) return correctWords;
+        if (k <= 0) {
+            return correctWords;
+        }
         for (String word : allWords) {
-            if (prev.length() != word.length()) k--;
-            if (k < 0) break;
+            if (prev.length() != word.length()) {
+                k--;
+            }
+            if (k < 0) {
+                break;
+            }
             correctWords.add(word);
             prev = word;
         }
