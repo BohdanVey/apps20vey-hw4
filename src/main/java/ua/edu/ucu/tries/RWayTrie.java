@@ -9,19 +9,23 @@ public class RWayTrie implements Trie {
     private static final int VERTEX_ZERO = 0;
     private static final int VERTEX_USED = 1;
     private static final int VERTEX_WORD = 2;
-    public static final int ELEMENTS_IN_VERTEX = 256;
+    private static final int ELEMENTS_IN_VERTEX = 256;
     private int size = 0;
 
     public static class Node extends Object {
-        //0 - we don't have such vertex, 1 - we have vertex, but don't have word, we have word
+        //0 - we don't have such vertex, 1 - we have vertex,
+        // but don't have word, 2 - we have word
         public int weight;
         public String word;
+
+
+
         // To be sure that we can use any char(lowercase and uppercase)
         public final Node[] next = new Node[ELEMENTS_IN_VERTEX];
 
         public Node() {
             this.weight = 0;
-            
+
         }
     }
 
