@@ -107,10 +107,4 @@ public class RWayTrie implements Trie {
         return allElements;
     }
 
-    @Override
-    public int size() {
-        return this.size();
-
-    }
-
 }
